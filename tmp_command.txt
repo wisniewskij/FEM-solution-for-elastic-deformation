@@ -1,1 +1,0 @@
-g++ project.cpp -I include -I C:\Users\48514\AppData\Local\Programs\Python\Python312\include -I C:\Users\48514\AppData\Local\Programs\Python\Python312\Lib\site-packages\numpy\core\include -L C:\Users\48514\AppData\Local\Programs\Python\Python312\libs -lpython312
