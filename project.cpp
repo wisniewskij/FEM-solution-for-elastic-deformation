@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 #include "matplotlibcpp.h"
 using namespace std;
+using namespace std::chrono;
+namespace plt = matplotlibcpp;
 
 // Two point Gaussian quadrature for given range [a, b]
 double gaussian_quadrature(double a, double b, function<double(double)> funk) {
@@ -62,7 +64,9 @@ vector<double> solve_linear_equation_system(vector<vector<double>> &M) {
 }
 
 // FEM solver 
-vector<double> FEM(int n) {
+void FEM(int n) {
+    auto start_time = high_resolution_clock::now();
+
     double a = 0.0, b = 2.0, h = (b-a)/((double)n);
     vector<function<double(double)>> e, de;
     vector<vector<pair<double, double>>> domain;
@@ -107,14 +111,31 @@ vector<double> FEM(int n) {
     }
 
     vector<double> ans = solve_linear_equation_system(M);
-    
-    return ans;
+
+    vector<double> x_values(2001), y_values(2001);
+    for(int i=1;i<x_values.size();i++) x_values[i] = x_values[i-1] + 0.001;
+    for(int i=0;i<x_values.size();i++) 
+        for (int j=0;j<n;j++) y_values[i] += e[j](x_values[i]) * ans[j];
+
+    auto stop_time = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop_time - start_time);
+    cout<<endl<<"Time taken: "<<duration.count()/1000000<<"s"<<endl;
+
+    plt::plot(x_values, y_values, "b-");
+    plt::show();
+    plt::detail::_interpreter::kill();
 }
  
  
 int main() {
-    vector<double> ans = FEM(1000);
-    // for(auto x:ans) cout<<x<<" ";
-     
+    cout<<"Pass the number of elements: ";
+    
+    int n;
+    while(true){
+        cin>>n;
+        if(n >= 2) break;
+        cout<<endl<<"Number has to be bigger than 2";
+    }
+    FEM(n);
     return 0;
 }
