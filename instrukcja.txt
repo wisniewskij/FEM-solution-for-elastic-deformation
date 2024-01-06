@@ -1,5 +1,7 @@
-Kompilacja programu napisanego w języku c++ przy pomocy kompilatora GCC wymaga (w celu tylko i wyłącznie wizualizacji) podpięcia biblioteki Numpy języka Python. Poniżej zamieszczam przykładową komendę do kompilowania pliku wynikowego.  
+Kompilacja programu napisanego w języku c++ przy pomocy kompilatora GCC wymaga (w celu tylko i wyłącznie wizualizacji) podpięcia biblioteki numpy oraz matplotlib języka Python. Poniżej zamieszczam przykładową komendę do kompilowania pliku wynikowego.  
 
 g++ project.cpp -o output.exe -I include -I <Python_dir>\include -I <Python_dir>\Lib\site-packages\numpy\core\include -L <Python_dir>\libs -lpython<wersja pythona np lpython312>
 
-Po uruchomieniu pliku output.exe zostaniemy poproszeni o wpisanie liczby elementów. Po obliczeniu zostanie wyświetlony wykres oraz czas wykonania programu. Największa liczba dla jakiej testowany był program to 5000 elemetów, które wyliczone zostały w 220 sekund. Program pozostawia przestrzeń do optymalizacji w zakresie procedury realizującej eliminacje Gaussa, która napisana jest dla przypadku dowolnego. Ze względu na to, że nasza macież jest trój-diagonalna możnaby obniżyć złożoność eliminacji Gaussa z O(n^3) do O(n) lecz w zadanym przypadku 5000 elementów wydało mi się wystarczającym wynikiem.
+Po uruchomieniu pliku output.exe zostaniemy poproszeni o wpisanie liczby elementów. Po obliczeniu zostanie wyświetlony wykres oraz czas wykonania programu. Największa liczba dla jakiej testowany był program to 5000 elemetów, które wyliczone zostały w 220 sekund. 
+Program pozostawia przestrzeń do optymalizacji w zakresie procedury realizującej eliminacje Gaussa, która napisana jest dla przypadku dowolnego. Ze względu na to, że nasza macież jest trój-diagonalna możnaby obniżyć złożoność eliminacji Gaussa z O(n^3) do O(n) lecz w zadanym przypadku 
+5000 elementów wydało mi się wystarczającym wynikiem.

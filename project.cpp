@@ -133,8 +133,8 @@ int main() {
     int n;
     while(true){
         cin>>n;
-        if(n >= 2) break;
-        cout<<endl<<"Number has to be bigger than 2";
+        if(n >= 1) break;
+        cout<<endl<<"Number has to be bigger than 0";
     }
     FEM(n);
     return 0;
